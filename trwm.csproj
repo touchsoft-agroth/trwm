@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Core">
+        <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\TheFarmerWasReplaced_Data\Managed\Core.dll</HintPath>
+      </Reference>
+      <Reference Include="MelonLoader">
+        <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\MelonLoader\net6\MelonLoader.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\TheFarmerWasReplaced_Data\Managed\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\TheFarmerWasReplaced_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\TheFarmerWasReplaced_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\TheFarmerWasReplaced_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="Utils">
+        <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\TheFarmerWasReplaced_Data\Managed\Utils.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
