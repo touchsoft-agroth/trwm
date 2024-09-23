@@ -31,6 +31,7 @@ namespace trwm.Source
 
         private void CheckModeToggle()
         {
+            // todo: should be disabled when inside of a code window...
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _isInManualMode = !_isInManualMode;

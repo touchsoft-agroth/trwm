@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using MelonLoader;
 using TMPro;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace trwm.Source
 {
@@ -81,7 +83,9 @@ namespace trwm.Source
             }
             
             // todo nr2: wrapping if no closest found
-
+            
+            
+            // may god forgive me for the sin of writing the code below. could it be written better? yes. will I? no.
             if (navDirection == WindowNavDirection.Left)
             {
                 var activeX = _activeWindow.transform.position.x;
@@ -149,29 +153,6 @@ namespace trwm.Source
                     return;
                 }
             }
-            
-            // if (Input.GetKeyDown(KeyCode.J))
-            // {
-            //     CodeWindow? old = _activeWindow;
-            //     if (HasActiveWindow)
-            //     {
-            //         var i = _allWindows.IndexOf(_activeWindow);
-            //         var next = i + 1;
-            //         if (next == _allWindows.Count)
-            //         {
-            //             next = 0;
-            //         }
-            //         _activeWindow = _allWindows[next];
-            //     }
-            //
-            //     else
-            //     {
-            //         _activeWindow = _allWindows.First();
-            //     }
-            //     
-            //     ColorActive(_activeWindow, old);
-            //     _loggerInstance.Msg($"set window {_activeWindow.fileName} as active");
-            // }
         }
 
         private WindowNavDirection GetInputNavDirection()

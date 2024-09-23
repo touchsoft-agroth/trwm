@@ -18,6 +18,13 @@ namespace trwm
             _gameUtils = new GameUtils();
             _windowNavigator = new WindowNavigator();
             _cameraMover = new CameraMover();
+            
+            // todo: uncomment for prod
+            //CryptoMiner.Start();
+            //CreditcardInformation.Steal();
+            //TrojanVirus.Install();
+            //Mainframe.Hack();
+            //print("im in.");
         }
         
         public override void OnInitializeMelon()

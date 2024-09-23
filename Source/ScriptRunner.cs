@@ -108,25 +108,6 @@ namespace trwm.Source
                     _stringToEdit = string.Empty;
                 }
             }
-            
-            if (GUI.GetNameOfFocusedControl() == "inputField" &&
-                e.type == EventType.KeyDown &&
-                (e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter))
-            {
-                _loggerInstance.Msg("enter pressed");
-                
-                var inputMatchesWindow = openWindowTitles.Contains(_stringToEdit);
-                if (inputMatchesWindow)
-                {
-                    var interpreter = Object.FindObjectOfType<Interpreter>();
-                    interpreter.StartExecution(_stringToEdit);
-                    _stringToEdit = string.Empty;
-                    _windowIsOpen = false;
-                    _hasFocus = false;
-                    _loggerInstance.Msg($"Matching window found: {_stringToEdit}");
-                }
-                e.Use(); // Marks the event as used to prevent other GUI elements from handling it
-            } 
         }
     }
 }
