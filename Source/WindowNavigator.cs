@@ -79,6 +79,8 @@ namespace trwm.Source
                 ColorActive(_activeWindow, null);
                 return;
             }
+            
+            // todo nr2: wrapping if no closest found
 
             if (navDirection == WindowNavDirection.Left)
             {

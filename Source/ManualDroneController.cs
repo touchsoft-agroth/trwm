@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Text;
+using UnityEngine;
 
 namespace trwm.Source
 {
@@ -7,6 +9,7 @@ namespace trwm.Source
         public bool Active => _isInManualMode;
         
         private bool _isInManualMode;
+        private bool _isPlacingEntity;
         
         public void Update()
         {
@@ -37,11 +40,39 @@ namespace trwm.Source
         private void DrawGui()
         {
             GUI.Label(new Rect(20, 150, 200, 200), "<b><color=cyan><size=20>Manual mode enabled</size></color></b>");
+
+            if (_isPlacingEntity)
+            {
+                // todo: show menu
+                var sb = new StringBuilder();
+                sb.Append("<b><color=white><size=20>");
+                sb.AppendLine("Entity placement:");
+                foreach (var kvp in _entityKeyNameMap)
+                {
+                    var (keycode, name) = kvp;
+                    sb.AppendLine($"({keycode}) {name}");
+                }
+
+                sb.Append("</size></color></b>");
+                
+                GUI.Label(new Rect(20, 375, 200, 200), sb.ToString());
+            }
         }
         
         private void UpdateManualMode()
         {
             var drone = Saver.Inst.mainFarm.drone;
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                _isPlacingEntity = !_isPlacingEntity;
+            }
+
+            if (_isPlacingEntity)
+            {
+                UpdatePlacingEntity(drone);
+                return;
+            }
             
             var inputDirection = GetInputDirection();
             if (inputDirection != null)
@@ -52,6 +83,32 @@ namespace trwm.Source
             if (Input.GetKeyDown(KeyCode.R))
             {
                 drone.Harvest();
+            }
+        }
+
+        private readonly Dictionary<KeyCode, string> _entityKeyNameMap = new Dictionary<KeyCode, string>
+        {
+            { KeyCode.G, "grass" },
+            { KeyCode.P, "pumpkin" },
+            { KeyCode.S, "sunflower" },
+            { KeyCode.C, "cactus" },
+            { KeyCode.T, "tree" },
+        };
+
+        private void UpdatePlacingEntity(Drone drone)
+        {
+            if (!_isPlacingEntity) return;
+
+            var dronePos = drone.pos;
+
+            foreach (var kvp in _entityKeyNameMap)
+            {
+                if (Input.GetKeyDown(kvp.Key))
+                {
+                    Saver.Inst.mainFarm.gm.SetEntity(dronePos, kvp.Value);
+                    _isPlacingEntity = false;
+                    break;
+                }
             }
         }
 
