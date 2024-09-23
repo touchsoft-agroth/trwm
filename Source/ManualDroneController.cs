@@ -4,6 +4,8 @@ namespace trwm.Source
 {
     public class ManualDroneController
     {
+        public bool Active => _isInManualMode;
+        
         private bool _isInManualMode;
         
         public void Update()
