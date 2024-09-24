@@ -35,9 +35,7 @@ namespace trwm.Source.Game
             _windowNameTexts = new CachedKeyValueResolver<WindowHandle, TMP_InputField>(handle =>
             {
                 var codeWindow = ResolveCodeWindow(handle);
-                var fieldInfo =
-                    typeof(CodeWindow).GetField("fileNameText", BindingFlags.NonPublic | BindingFlags.Instance);
-                return (TMP_InputField)fieldInfo.GetValue(codeWindow);
+                return codeWindow.GetFieldValue<TMP_InputField>("fileNameText");
             });
 
             _logger = new Logging.Logger(this);
