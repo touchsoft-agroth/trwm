@@ -2,6 +2,7 @@
 using trwm;
 using trwm.Source.Game;
 using trwm.Source.Logging;
+using trwm.Source.Measuring;
 using trwm.Source.Modes;
 
 [assembly: MelonInfo(typeof(TrwmMod), ModData.NameLong, ModData.VersionString, ModData.Author)]
@@ -11,6 +12,7 @@ namespace trwm
     public class TrwmMod : MelonMod
     {
         private ModeController _modeController;
+        private TimedRunUnlockTracker _timedRunUnlockTracker;
 
         private bool _isInitialized;
         
@@ -36,6 +38,7 @@ namespace trwm
             var gameGateway = new GameGateway(droneController, windowManager);
 
             _modeController = new ModeController(gameGateway);
+            _timedRunUnlockTracker = new TimedRunUnlockTracker();
 
             _isInitialized = true;
         }
@@ -53,10 +56,12 @@ namespace trwm
             }
             
             _modeController.Update();
+            _timedRunUnlockTracker.Update();
         }
 
         public override void OnGUI()
         {
+            _timedRunUnlockTracker.OnGuiUpdate();
         }
     }
 }
