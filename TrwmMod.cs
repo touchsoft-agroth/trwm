@@ -1,8 +1,11 @@
 ﻿using MelonLoader;
+using trwm;
 using trwm.Source.Game;
 using trwm.Source.Logging;
 using trwm.Source.Modes;
 
+[assembly: MelonInfo(typeof(TrwmMod), ModData.NameLong, ModData.VersionString, ModData.Author)]
+[assembly: MelonGame(ModData.TargetGame, ModData.TargetGame)]
 namespace trwm
 {
     public class TrwmMod : MelonMod
