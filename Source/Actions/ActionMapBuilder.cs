@@ -12,6 +12,7 @@ namespace trwm.Source.Actions
         private readonly ModeCollection _modeCollection;
         
         private readonly Dictionary<KeyCode, Action> _actions;
+        private bool _exitOnAction;
 
         private readonly Logging.Logger _logger;
 
@@ -27,11 +28,18 @@ namespace trwm.Source.Actions
 
         public ActionMap Build()
         {
+            Action? onExecuteAction = null;
+            if (_exitOnAction)
+            {
+                onExecuteAction = () => _modeStack.Pop();
+            }
+            
             _logger.Info($"built action map with {_actions.Count} actions");
-            return new ActionMap(_actions);
+            
+            return new ActionMap(_actions, onExecuteAction);
         }
         
-        public void AddAction(KeyCode trigger, Action action)
+        public void BindAction(KeyCode trigger, Action action)
         {
             _actions.Add(trigger, action);
         }
@@ -56,6 +64,11 @@ namespace trwm.Source.Actions
                 _modeStack.Pop();
                 _logger.Info("exiting current mode");
             });
+        }
+
+        public void ExitOnAction()
+        {
+            _exitOnAction = true;
         }
     }
 }

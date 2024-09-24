@@ -39,8 +39,10 @@ namespace trwm
             var gameGateway = new GameGateway(droneController, windowManager);
 
             _modeController = new ModeController(gameGateway);
+            // this should be done in mode controller
             _modeController.Register(ModeType.Drone, new DroneMode());
             _modeController.Register(ModeType.Window, new WindowMode());
+            _modeController.Register(ModeType.DroneEntityPlacement, new DroneEntityPlacementMode());
 
             _isInitialized = true;
         }

@@ -8,19 +8,19 @@ namespace trwm.Source.Modes
     {
         protected override ActionMap BuildActionMap(ActionMapBuilder builder, GameGateway gameGateway)
         {
-            builder.AddAction(KeyCode.M, () =>
+            builder.BindAction(KeyCode.M, () =>
             {
                 if (gameGateway.Windows.ActiveWindow == null) return;
                 gameGateway.Windows.ToggleMinimized(gameGateway.Windows.ActiveWindow.Value);
             });
             
-            builder.AddAction(KeyCode.R, () =>
+            builder.BindAction(KeyCode.R, () =>
             {
                 if (gameGateway.Windows.ActiveWindow == null) return;
                 gameGateway.Windows.RunWindow(gameGateway.Windows.ActiveWindow.Value);
             });
             
-            builder.AddAction(KeyCode.J, () =>
+            builder.BindAction(KeyCode.J, () =>
             {
                 gameGateway.Windows.SetRandomActiveLol();
             });

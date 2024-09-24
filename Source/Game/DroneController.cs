@@ -16,10 +16,14 @@ namespace trwm.Source.Game
         
         private readonly Drone _subject;
         private readonly Logging.Logger _logger;
+
+        private readonly Farm _farm;
         
         public DroneController()
         {
             _subject = Saver.Inst.mainFarm.drone;
+            _farm = Object.FindObjectOfType<Farm>(true);
+            
             _logger = new Logging.Logger(this);
         }
 
@@ -34,6 +38,11 @@ namespace trwm.Source.Game
         {
             _subject.Harvest();
             _logger.Info($"harvesting");
+        }
+
+        public void Place(string entityName)
+        {
+            _farm.gm.SetEntity(Position, entityName);
         }
 
         public Vector2Int Position => _subject.pos;

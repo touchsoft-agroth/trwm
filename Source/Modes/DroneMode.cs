@@ -8,28 +8,30 @@ namespace trwm.Source.Modes
     {
         protected override ActionMap BuildActionMap(ActionMapBuilder builder, GameGateway gameGateway)
         {
-            builder.AddAction(KeyCode.J, () =>
+            builder.BindAction(KeyCode.J, () =>
             {
                 gameGateway.Drone.Move(MovementDirection.Down);
             });
             
-            builder.AddAction(KeyCode.K, () =>
+            builder.BindAction(KeyCode.K, () =>
             {
                 gameGateway.Drone.Move(MovementDirection.Up);
             });
-            builder.AddAction(KeyCode.H, () =>
+            builder.BindAction(KeyCode.H, () =>
             {
                 gameGateway.Drone.Move(MovementDirection.Left);
             });
-            builder.AddAction(KeyCode.L, () =>
+            builder.BindAction(KeyCode.L, () =>
             {
                 gameGateway.Drone.Move(MovementDirection.Right);
             });
 
-            builder.AddAction(KeyCode.A, () =>
+            builder.BindAction(KeyCode.A, () =>
             {
                 gameGateway.Drone.Harvest();
             });
+            
+            builder.BindMode(KeyCode.E, ModeType.DroneEntityPlacement);
             
             builder.AddModeExit();
 

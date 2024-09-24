@@ -4,6 +4,7 @@
     {
         Normal,
         Drone,
+        DroneEntityPlacement,
         Window
     }
 }
