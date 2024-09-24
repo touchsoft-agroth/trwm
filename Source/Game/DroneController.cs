@@ -15,21 +15,25 @@ namespace trwm.Source.Game
             };
         
         private readonly Drone _subject;
+        private readonly Logging.Logger _logger;
         
         public DroneController()
         {
             _subject = Saver.Inst.mainFarm.drone;
+            _logger = new Logging.Logger(this);
         }
 
         public void Move(MovementDirection direction)
         {
             var gridDirection = MovementMap[direction];
             _subject.Move(gridDirection);
+            _logger.Info($"moving in direction {direction}");
         }
 
         public void Harvest()
         {
             _subject.Harvest();
+            _logger.Info($"harvesting");
         }
 
         public Vector2Int Position => _subject.pos;

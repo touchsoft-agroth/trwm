@@ -10,6 +10,8 @@ namespace trwm
 {
     public class TrwmMod : MelonMod
     {
+        public static bool CanBeInitialized { private get; set; }
+        
         private ModeController _modeController;
 
         private bool _isInitialized;
@@ -42,7 +44,7 @@ namespace trwm
 
             _isInitialized = true;
         }
-
+        
         public override void OnDeinitializeMelon()
         {
             Source.Logging.Logger.UnbindOutput();
@@ -60,6 +62,19 @@ namespace trwm
 
         public override void OnGUI()
         {
+        }
+
+        private void CustomInit()
+        {
+            var droneController = new DroneController();
+            var windowManager = new WindowManager();
+            var gameGateway = new GameGateway(droneController, windowManager);
+
+            _modeController = new ModeController(gameGateway);
+            _modeController.Register(ModeType.Drone, new DroneMode());
+            _modeController.Register(ModeType.Window, new WindowMode());
+
+            _isInitialized = true;
         }
     }
 }

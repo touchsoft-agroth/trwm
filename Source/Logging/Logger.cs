@@ -29,16 +29,22 @@ namespace trwm.Source.Logging
 
         private static IConsoleOutput? _output;
         
-        private readonly object _source;
+        private readonly object? _source;
 
-        public Logger(object source)
+        public Logger(object? source)
         {
             _source = source;
         }
 
         public void Info(string message)
         {
-            Output.Write(message);
+            Output.Write(AppendSourceType(message));
+        }
+
+        private string AppendSourceType(string message)
+        {
+            var prefix = _source == null ? "[NULL] " : $"[{_source.GetType().Name}] ";
+            return message.Insert(0, prefix);
         }
     }
 }

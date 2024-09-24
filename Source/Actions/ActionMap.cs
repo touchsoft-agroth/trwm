@@ -1,41 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace trwm.Source.Actions
 {
     public class ActionMap
     {
-        public IEnumerable<KeyCode> KeyCodes => _map.Keys.Concat(_modeBindings.Keys);
+        public IEnumerable<KeyCode> KeyCodes => _bindings.Keys;
         
-        private readonly Dictionary<KeyCode, GameAction> _map;
-        private readonly Dictionary<KeyCode, Action> _modeBindings;
+        private readonly Dictionary<KeyCode, Action> _bindings;
         
-        private readonly Logging.Logger _logger;
-        
-        
-        public ActionMap(Dictionary<KeyCode, GameAction> map, Dictionary<KeyCode, Action> modeBindings)
+        public ActionMap(Dictionary<KeyCode, Action> bindings)
         {
-            _map = map;
-            _modeBindings = modeBindings;
-            
-            _logger = new Logging.Logger(this);
-            
+            _bindings = bindings;
         }
         
         public void Execute(KeyCode keyCode)
         {
-            _logger.Info($"executing action for keycode {keyCode}");
-
-            if (_map.TryGetValue(keyCode, out var gameAction))
+            if (_bindings.TryGetValue(keyCode, out var binding))
             {
-                gameAction.Execute();
-            }
-            
-            else if (_modeBindings.TryGetValue(keyCode, out var modeBinding))
-            {
-                modeBinding();
+                binding();
             }
         }
     }

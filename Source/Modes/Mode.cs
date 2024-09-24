@@ -12,10 +12,10 @@ namespace trwm.Source.Modes
         
         public void Initialize(GameGateway gameGateway, ModeCollection modeCollection, DefaultStack<Mode> modeStack)
         {
-            _actionMap = BuildActionMap(new ActionMapBuilder(gameGateway, modeStack, modeCollection));
+            _actionMap = BuildActionMap(new ActionMapBuilder(modeStack, modeCollection), gameGateway);
             Dispatcher = new ActionDispatcher(_actionMap);
         }
         
-        protected abstract ActionMap BuildActionMap(ActionMapBuilder builder);
+        protected abstract ActionMap BuildActionMap(ActionMapBuilder builder, GameGateway gameGateway);
     }
 }

@@ -17,7 +17,6 @@ namespace trwm.Source.Actions
             {
                 if (Input.GetKeyDown(keyCode))
                 {
-                    new Logging.Logger(this).Info("do");
                     _actionMap.Execute(keyCode);
                     break;
                 }

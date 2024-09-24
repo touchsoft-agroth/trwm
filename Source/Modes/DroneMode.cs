@@ -6,14 +6,30 @@ namespace trwm.Source.Modes
 {
     public class DroneMode : Mode
     {
-        protected override ActionMap BuildActionMap(ActionMapBuilder builder)
+        protected override ActionMap BuildActionMap(ActionMapBuilder builder, GameGateway gameGateway)
         {
-            builder.AddAction(KeyCode.J, new MoveDroneAction(builder.GameGateway, MovementDirection.Down));
-            builder.AddAction(KeyCode.K, new MoveDroneAction(builder.GameGateway, MovementDirection.Up));
-            builder.AddAction(KeyCode.H, new MoveDroneAction(builder.GameGateway, MovementDirection.Left));
-            builder.AddAction(KeyCode.L, new MoveDroneAction(builder.GameGateway, MovementDirection.Right));
+            builder.AddAction(KeyCode.J, () =>
+            {
+                gameGateway.Drone.Move(MovementDirection.Down);
+            });
+            
+            builder.AddAction(KeyCode.K, () =>
+            {
+                gameGateway.Drone.Move(MovementDirection.Up);
+            });
+            builder.AddAction(KeyCode.H, () =>
+            {
+                gameGateway.Drone.Move(MovementDirection.Left);
+            });
+            builder.AddAction(KeyCode.L, () =>
+            {
+                gameGateway.Drone.Move(MovementDirection.Right);
+            });
 
-            builder.AddAction(KeyCode.A, new HarvestAction(builder.GameGateway));
+            builder.AddAction(KeyCode.A, () =>
+            {
+                gameGateway.Drone.Harvest();
+            });
             
             builder.AddModeExit();
 

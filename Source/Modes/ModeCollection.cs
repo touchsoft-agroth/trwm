@@ -4,8 +4,6 @@ namespace trwm.Source.Modes
 {
     public class ModeCollection
     {
-        public int Count => _modes.Count;
-        
         private readonly Dictionary<ModeType, Mode> _modes;
 
         public ModeCollection()
