@@ -25,6 +25,24 @@ namespace trwm.Source.Modes
                 gameGateway.Windows.SetRandomActiveLol();
             });
             
+            builder.BindAction(KeyCode.G, () =>
+            {
+                var activeWindow = gameGateway.Windows.ActiveWindow;
+                if (activeWindow != null)
+                {
+                    gameGateway.Windows.MoveTo(activeWindow.Value);
+                }
+            });
+            
+            builder.BindAction(KeyCode.I, () =>
+            {
+                var activeWindow = gameGateway.Windows.ActiveWindow;
+                if (activeWindow != null)
+                {
+                    gameGateway.Windows.MakeFocused(activeWindow.Value);
+                }
+            });
+            
             builder.AddModeExit();
 
             return builder.Build();

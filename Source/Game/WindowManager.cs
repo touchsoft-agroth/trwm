@@ -82,11 +82,31 @@ namespace trwm.Source.Game
             }
         }
 
+        public void MoveTo(WindowHandle handle)
+        {
+            var window = ResolveWindow(handle);
+            if (window != null)
+            {
+                var rectTransform = window.GetComponent<RectTransform>();
+                _workspace.MoveCameraTo(rectTransform);
+            }
+        }
+
         public void SetRandomActiveLol()
         {
             var windows = GetAll();
             var i = Random.Range(0, windows.Count());
             SetActive(windows.ElementAt(i));
+        }
+
+        public void MakeFocused(WindowHandle handle)
+        {
+            var window = ResolveWindow(handle);
+            if (window != null)
+            {
+                var codeInputField = window.GetComponentInChildren<CodeInputField>();
+                codeInputField.Select();
+            }
         }
 
         private Window? ResolveWindow(WindowHandle handle)
