@@ -1,4 +1,5 @@
-﻿using trwm.Source.Actions;
+﻿using System.Collections.Generic;
+using trwm.Source.Actions;
 using trwm.Source.Game;
 using UnityEngine;
 
@@ -6,12 +7,26 @@ namespace trwm.Source.Modes
 {
     public class DroneEntityPlacementMode : Mode
     {
+        private static readonly Dictionary<KeyCode, string> EntityKeyCodeMap = new Dictionary<KeyCode, string>
+        {
+            { KeyCode.P, "pumpkin" },
+            { KeyCode.S, "sunflower" },
+            { KeyCode.D, "dinosaur" },
+            { KeyCode.C, "cactus" },
+            { KeyCode.B, "bush" },
+            { KeyCode.T, "tree" },
+        };
+        
         protected override ActionMap BuildActionMap(ActionMapBuilder builder, GameGateway gameGateway)
         {
-            builder.BindAction(KeyCode.P, () =>
+            foreach (var kvp in EntityKeyCodeMap)
             {
-                gameGateway.Drone.Place("pumpkin");
-            });
+                var (keyCode, entityName) = kvp;
+                builder.BindAction(keyCode, () =>
+                {
+                    gameGateway.Drone.Place(entityName);
+                });
+            }
             
             builder.ExitOnAction();
             
