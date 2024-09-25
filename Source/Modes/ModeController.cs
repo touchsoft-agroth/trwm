@@ -6,15 +6,16 @@ namespace trwm.Source.Modes
     public class ModeController
     {
         private readonly GameGateway _gameGateway;
+        private readonly InputsBlockedChecker _inputsBlockedChecker;
         
         private readonly ModeCollection _modeCollection;
         private readonly DefaultStack<Mode> _modeStack;
 
-        private readonly Logging.Logger _logger;
 
         public ModeController(GameGateway gameGateway)
         {
             _gameGateway = gameGateway;
+            _inputsBlockedChecker = new InputsBlockedChecker();
 
             _modeStack = new DefaultStack<Mode>();
             _modeCollection = new ModeCollection();
@@ -24,17 +25,19 @@ namespace trwm.Source.Modes
             _modeStack.SetDefault(normalMode);
             
             RegisterModes();
-
-            _logger = new Logging.Logger(this);
         }
 
         public void Update()
         {
-            // todo: this should not do anything while editing a script....
+            if (_inputsBlockedChecker.IsBlocked())
+            {
+                return;
+            }
             
             var activeMode = GetActiveMode();
             activeMode.Dispatcher.Update();
         }
+
         
         private void RegisterModes()
         {
