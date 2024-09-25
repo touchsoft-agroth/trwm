@@ -57,6 +57,14 @@ namespace trwm.Source.Modes
                 });
             });
             
+            builder.BindAction(KeyCode.U, () =>
+            {
+                if (gameGateway.Windows.TryGetUnderCamera(out var hoveredHandle))
+                {
+                    gameGateway.Windows.SetActive(hoveredHandle.Value);
+                }
+            });
+            
             builder.AddModeExit();
 
             return builder.Build();

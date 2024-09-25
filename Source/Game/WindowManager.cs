@@ -126,6 +126,34 @@ namespace trwm.Source.Game
             }
         }
 
+        public bool TryGetUnderCamera(out WindowHandle? handle)
+        {
+            Window? hoveredWindow = null;
+            var windowDetector = new WindowDetector();
+
+            var screenMiddle = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            foreach (var detectedWindow in windowDetector.DetectWindows(screenMiddle))
+            {
+                hoveredWindow = detectedWindow;
+            }
+
+            if (hoveredWindow != null)
+            {
+                foreach (var kvp in Windows)
+                {
+                    var (windowTitle, otherWindow) = kvp;
+                    if (otherWindow == hoveredWindow)
+                    {
+                        handle = FindByTitle(windowTitle);
+                        return true;
+                    }
+                }
+            }
+
+            handle = null;
+            return false;
+        }
+        
         private Window? ResolveWindow(WindowHandle handle)
         {
             return Windows.GetValueOrDefault(handle.Identifier);
