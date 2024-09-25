@@ -1,6 +1,7 @@
 ﻿# (T)he (R)replacement (W)as (M)odded
 
-A small mod for The Farmer Was Replaced with (subjective) QOL-improvements.
+A small mod for [The Farmer Was Replaced](https://store.steampowered.com/app/2060160/The_Farmer_Was_Replaced/)
+with (subjective) QOL-improvements.
 
 ## Installation
 1. Download and install [Melonloader](https://melonwiki.xyz/#/README?id=automated-installation) for TFWR
