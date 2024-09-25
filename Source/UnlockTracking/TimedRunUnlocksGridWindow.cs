@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using trwm.Source.Game;
 using UnityEngine;
 
 namespace trwm.Source.UnlockTracking
@@ -66,9 +67,23 @@ namespace trwm.Source.UnlockTracking
 
             GUI.EndScrollView();
 
+            UpdateDragging();
             GUI.DragWindow(); 
             
             _lastRecordCount = _dataSource.Count;
+        }
+
+        private void UpdateDragging()
+        {
+            if (Event.current.type == EventType.MouseDrag)
+            {
+                CameraDragging.SetEnabled(false);
+            }
+
+            if (Event.current.type == EventType.MouseUp)
+            {
+                CameraDragging.SetEnabled(true);
+            }
         }
     }
 }
