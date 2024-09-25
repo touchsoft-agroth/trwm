@@ -35,7 +35,8 @@ namespace trwm
         {
             var droneController = new DroneController();
             var windowManager = new WindowManager();
-            var gameGateway = new GameGateway(droneController, windowManager);
+            var workspaceController = new WorkspaceController();
+            var gameGateway = new GameGateway(droneController, windowManager, workspaceController);
 
             _modeController = new ModeController(gameGateway);
             _timedRunUnlockTracker = new TimedRunUnlockTracker();

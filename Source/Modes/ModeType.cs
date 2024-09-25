@@ -5,6 +5,7 @@
         Normal,
         Drone,
         DroneEntityPlacement,
-        Window
+        Window,
+        Camera
     }
 }
