@@ -1,5 +1,6 @@
 ﻿using trwm.Source.Actions;
 using trwm.Source.Game;
+using trwm.Source.UI;
 using UnityEngine;
 
 namespace trwm.Source.Modes
@@ -41,6 +42,19 @@ namespace trwm.Source.Modes
                 {
                     gameGateway.Windows.MakeFocused(activeWindow.Value);
                 }
+            });
+            
+            builder.BindAction(KeyCode.F, () =>
+            {
+                SearchBox.Show("Window search", gameGateway.Windows.GetAllWindowTitles(), result =>
+                {
+                    var handle = gameGateway.Windows.FindByTitle(result);
+                    if (handle.HasValue)
+                    {
+                        gameGateway.Windows.SetActive(handle.Value);
+                        gameGateway.Windows.MoveTo(handle.Value);
+                    }
+                });
             });
             
             builder.AddModeExit();

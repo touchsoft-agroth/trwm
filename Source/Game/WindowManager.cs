@@ -49,6 +49,22 @@ namespace trwm.Source.Game
             return Windows.Select(kvp => new WindowHandle(kvp.Key));
         }
 
+        public List<string> GetAllWindowTitles()
+        {
+            return Windows.Keys.ToList();
+        }
+
+        public WindowHandle? FindByTitle(string windowTitle)
+        {
+            var handle = new WindowHandle(windowTitle);
+            if (ResolveWindow(handle) == null)
+            {
+                return null;
+            }
+
+            return handle;
+        }
+
         public void ToggleMinimized(WindowHandle handle)
         {
             var window = ResolveWindow(handle);
@@ -89,6 +105,7 @@ namespace trwm.Source.Game
             {
                 var rectTransform = window.GetComponent<RectTransform>();
                 _workspace.MoveCameraTo(rectTransform);
+                window.MoveToFront();
             }
         }
 
