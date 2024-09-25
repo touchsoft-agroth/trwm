@@ -2,8 +2,8 @@
 using trwm;
 using trwm.Source.Game;
 using trwm.Source.Logging;
-using trwm.Source.Measuring;
 using trwm.Source.Modes;
+using trwm.Source.UnlockTracking;
 
 [assembly: MelonInfo(typeof(TrwmMod), ModData.NameLong, ModData.VersionString, ModData.Author)]
 [assembly: MelonGame(ModData.TargetGame, ModData.TargetGame)]
