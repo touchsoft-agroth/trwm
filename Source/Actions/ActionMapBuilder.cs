@@ -8,20 +8,20 @@ namespace trwm.Source.Actions
 {
     public class ActionMapBuilder
     {
-        private readonly DefaultStack<Mode> _modeStack;
+        private readonly IStacking<Mode> _modeStack;
         private readonly ModeCollection _modeCollection;
         
-        private readonly Dictionary<KeyCode, Action> _actions;
+        private readonly List<MappedAction> _actions;
         private bool _exitOnAction;
 
         private readonly Logging.Logger _logger;
 
-        public ActionMapBuilder(DefaultStack<Mode> modeStack, ModeCollection modeCollection)
+        public ActionMapBuilder(IStacking<Mode> modeStack, ModeCollection modeCollection)
         {
             _modeStack = modeStack;
             _modeCollection = modeCollection;
 
-            _actions = new Dictionary<KeyCode, Action>();
+            _actions = new List<MappedAction>();
 
             _logger = new Logging.Logger(this);
         }
@@ -39,14 +39,14 @@ namespace trwm.Source.Actions
             return new ActionMap(_actions, onExecuteAction);
         }
         
-        public void BindAction(KeyCode trigger, Action action)
+        public void BindAction(string name, KeyCode trigger, Action action)
         {
-            _actions.Add(trigger, action);
+            _actions.Add(new MappedAction(name, action, trigger));
         }
 
         public void BindMode(KeyCode trigger, ModeType mode)
         {
-            _actions.Add(trigger, () =>
+            var action = new MappedAction($"{mode.ToDisplayName()} mode", () =>
             {
                 var modeInstance = _modeCollection.Get(mode);
                 if (modeInstance != null)
@@ -54,16 +54,18 @@ namespace trwm.Source.Actions
                     _logger.Info($"pushing mode {mode} to mode stack");
                     _modeStack.Push(modeInstance);
                 }
-            });
+            }, trigger);
+            
+            _actions.Add(action);
         }
 
         public void AddModeExit()
         {
-            _actions.Add(KeyCode.Q, () =>
+            _actions.Add(new MappedAction("Exit", () =>
             {
                 _modeStack.Pop();
                 _logger.Info("exiting current mode");
-            });
+            }, KeyCode.Q));
         }
 
         public void ExitOnAction()

@@ -28,6 +28,11 @@ namespace trwm.Source.Game
             _scrollRect.normalizedPosition += movement;
         }
 
+        public void SetPosition(Vector2 position)
+        {
+            _scrollRect.normalizedPosition = position;
+        }
+
         public void Zoom(float amount)
         {
             _workspace.Zoom(amount);

@@ -16,13 +16,15 @@ namespace trwm.Source.Modes
             { KeyCode.B, "bush" },
             { KeyCode.T, "tree" },
         };
-        
+
+        public override string Name => "Entity Placement";
+
         protected override ActionMap BuildActionMap(ActionMapBuilder builder, GameGateway gameGateway)
         {
             foreach (var kvp in EntityKeyCodeMap)
             {
                 var (keyCode, entityName) = kvp;
-                builder.BindAction(keyCode, () =>
+                builder.BindAction($"Place {entityName}", keyCode, () =>
                 {
                     gameGateway.Drone.Place(entityName);
                 });

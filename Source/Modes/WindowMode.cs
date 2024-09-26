@@ -7,26 +7,23 @@ namespace trwm.Source.Modes
 {
     public class WindowMode : Mode
     {
+        public override string Name => "Window";
+
         protected override ActionMap BuildActionMap(ActionMapBuilder builder, GameGateway gameGateway)
         {
-            builder.BindAction(KeyCode.M, () =>
+            builder.BindAction("Mini/Maximize active", KeyCode.M, () =>
             {
                 if (gameGateway.Windows.ActiveWindow == null) return;
                 gameGateway.Windows.ToggleMinimized(gameGateway.Windows.ActiveWindow.Value);
             });
             
-            builder.BindAction(KeyCode.R, () =>
+            builder.BindAction("Run active", KeyCode.R, () =>
             {
                 if (gameGateway.Windows.ActiveWindow == null) return;
                 gameGateway.Windows.RunWindow(gameGateway.Windows.ActiveWindow.Value);
             });
             
-            builder.BindAction(KeyCode.J, () =>
-            {
-                gameGateway.Windows.SetRandomActiveLol();
-            });
-            
-            builder.BindAction(KeyCode.G, () =>
+            builder.BindAction("Goto active", KeyCode.G, () =>
             {
                 var activeWindow = gameGateway.Windows.ActiveWindow;
                 if (activeWindow != null)
@@ -35,7 +32,7 @@ namespace trwm.Source.Modes
                 }
             });
             
-            builder.BindAction(KeyCode.I, () =>
+            builder.BindAction("Insert", KeyCode.I, () =>
             {
                 var activeWindow = gameGateway.Windows.ActiveWindow;
                 if (activeWindow != null)
@@ -44,7 +41,7 @@ namespace trwm.Source.Modes
                 }
             });
             
-            builder.BindAction(KeyCode.F, () =>
+            builder.BindAction("Search", KeyCode.F, () =>
             {
                 SearchBox.Show("Window search", gameGateway.Windows.GetAllWindowTitles(), result =>
                 {
@@ -57,7 +54,7 @@ namespace trwm.Source.Modes
                 });
             });
             
-            builder.BindAction(KeyCode.U, () =>
+            builder.BindAction("Set under active", KeyCode.U, () =>
             {
                 if (gameGateway.Windows.TryGetUnderCamera(out var hoveredHandle))
                 {

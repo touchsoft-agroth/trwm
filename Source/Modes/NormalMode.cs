@@ -6,6 +6,8 @@ namespace trwm.Source.Modes
 {
     public class NormalMode : Mode
     {
+        public override string Name => "Normal";
+
         protected override ActionMap BuildActionMap(ActionMapBuilder builder, GameGateway gameGateway)
         {
             builder.BindMode(KeyCode.D, ModeType.Drone);

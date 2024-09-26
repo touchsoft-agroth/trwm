@@ -6,36 +6,43 @@ namespace trwm.Source.Modes
 {
     public class CameraMode : Mode
     {
+        public override string Name => "Camera";
+
         protected override ActionMap BuildActionMap(ActionMapBuilder builder, GameGateway gameGateway)
         {
-            builder.BindAction(KeyCode.H, () =>
+            builder.BindAction("Move left", KeyCode.H, () =>
             {
                 gameGateway.Workspace.Move(Vector2.left);
             });
             
-            builder.BindAction(KeyCode.J, () =>
+            builder.BindAction("Move down", KeyCode.J, () =>
             {
                 gameGateway.Workspace.Move(Vector2.down); 
             });
             
-            builder.BindAction(KeyCode.K, () =>
+            builder.BindAction("Move up", KeyCode.K, () =>
             {
                 gameGateway.Workspace.Move(Vector2.up);
             });
             
-            builder.BindAction(KeyCode.L, () =>
+            builder.BindAction("Move right", KeyCode.L, () =>
             {
                 gameGateway.Workspace.Move(Vector2.right);
             });
             
-            builder.BindAction(KeyCode.I, () =>
+            builder.BindAction("Zoom in", KeyCode.I, () =>
             {
                 gameGateway.Workspace.Zoom(1);
             });
             
-            builder.BindAction(KeyCode.O, () =>
+            builder.BindAction("Zoom out", KeyCode.O, () =>
             {
                 gameGateway.Workspace.Zoom(-1);
+            });
+            
+            builder.BindAction("Center camera", KeyCode.C, () =>
+            {
+                gameGateway.Workspace.SetPosition(new Vector2(0.5f, 0.5f));
             });
             
             builder.AddModeExit();

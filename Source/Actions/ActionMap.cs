@@ -1,28 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace trwm.Source.Actions
 {
     public class ActionMap
     {
-        public IEnumerable<KeyCode> KeyCodes => _bindings.Keys;
-        
-        private readonly Dictionary<KeyCode, Action> _bindings;
+        public List<MappedAction> Actions { get; }
+
+        // todo: do not use linq
+        public IEnumerable<KeyCode> KeyCodes => Actions.Select(binding => binding.Key);
+
         private readonly Action? _onExecuteCallback;
 
-        public ActionMap(Dictionary<KeyCode, Action> bindings, Action? onExecuteCallback)
+        public ActionMap(List<MappedAction> actions, Action? onExecuteCallback)
         {
-            _bindings = bindings;
+            Actions = actions;
             _onExecuteCallback = onExecuteCallback;
         }
         
         public void Execute(KeyCode keyCode)
         {
-            if (_bindings.TryGetValue(keyCode, out var binding))
+            foreach (var binding in Actions)
             {
-                binding();
-                _onExecuteCallback?.Invoke();
+                if (binding.Key == keyCode)
+                {
+                    binding.Action();
+                    _onExecuteCallback?.Invoke();
+                    break;
+                }
             }
         }
     }
