@@ -4,10 +4,18 @@ A small mod for [The Farmer Was Replaced](https://store.steampowered.com/app/206
 with (subjective) QOL-improvements. Focuses on making the game easier to control with a keyboard by introducing a modal
 system for most game actions. Also contains additional debugging/development features.
 
+# Setup
+
 ## Installation
 1. Download and install [Melonloader](https://melonwiki.xyz/#/README?id=automated-installation) for TFWR
 2. Get the latest TRWM version from [releases](https://github.com/touchsoft-agroth/trwm/releases)
 3. Put the .dll file into the melonloader mods directory (tfwr_install_dir/Mods)
+
+## Manual game configuration
+The mod uses the WASD keys for various functions. I recommend rebinding the camera movement keys
+to the arrow keys. You will not need those with this mod installed.
+
+
 # Keybinds
 
 ## Global Keys
