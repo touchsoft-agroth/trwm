@@ -109,11 +109,11 @@ namespace trwm.Source.Game
             }
         }
 
-        public void SetRandomActiveLol()
+        public WindowHandle NewWindow()
         {
-            var windows = GetAll();
-            var i = Random.Range(0, windows.Count());
-            SetActive(windows.ElementAt(i));
+            var newWindowTitle = _workspace.GenerateFileName("f");
+            _workspace.AddNewWindow();
+            return new WindowHandle(newWindowTitle);
         }
 
         public void MakeFocused(WindowHandle handle)

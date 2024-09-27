@@ -62,6 +62,12 @@ namespace trwm.Source.Modes
                 }
             });
             
+            builder.BindAction("New window", KeyCode.N, () =>
+            {
+                var newWindow = gameGateway.Windows.NewWindow();
+                gameGateway.Windows.SetActive(newWindow);
+            });
+            
             builder.AddModeExit();
 
             return builder.Build();
