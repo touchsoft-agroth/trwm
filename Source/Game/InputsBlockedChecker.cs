@@ -9,6 +9,7 @@ namespace trwm.Source.Game
     {
         private readonly ResearchMenu _researchMenu;
         private readonly Menu _menu;
+        private readonly InputFieldTracker _inputFieldTracker;
 
         public InputsBlockedChecker()
         {
@@ -17,6 +18,8 @@ namespace trwm.Source.Game
 
             _menu = Object.FindObjectOfType<Menu>(true);
             _menu.ThrowIfNull();
+
+            _inputFieldTracker = new InputFieldTracker();
         }
 
         public bool IsBlocked()
@@ -34,7 +37,7 @@ namespace trwm.Source.Game
                 }
             }
             
-            return _researchMenu.IsOpen || _menu.gameObject.activeInHierarchy;
+            return _researchMenu.IsOpen || _menu.gameObject.activeInHierarchy || _inputFieldTracker.IsAnyInputFieldFocused;
         }
 
         private GameObject? GetCurrentSelectedGameObject()
