@@ -8,7 +8,8 @@ namespace trwm.Source.Modes
         Drone,
         DroneEntityPlacement,
         Window,
-        Camera
+        Camera,
+        Farm
     }
 
     public static class ModeTypeExtensions
@@ -22,7 +23,8 @@ namespace trwm.Source.Modes
                 ModeType.DroneEntityPlacement => "Entity",
                 ModeType.Window => "Window",
                 ModeType.Camera => "Camera",
-                _ => throw new NotImplementedException()
+                ModeType.Farm => "Farm",
+                _ => modeType.ToString()
             };
         }
     }

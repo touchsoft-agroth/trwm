@@ -48,6 +48,7 @@ namespace trwm.Source.Modes
             Register(ModeType.Window, new WindowMode());
             Register(ModeType.DroneEntityPlacement, new DroneEntityPlacementMode());
             Register(ModeType.Camera, new CameraMode());
+            Register(ModeType.Farm, new FarmMode());
         }
 
         private void Register(ModeType modeType, Mode mode)
