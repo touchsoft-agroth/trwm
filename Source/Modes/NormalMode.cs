@@ -14,6 +14,7 @@ namespace trwm.Source.Modes
             builder.BindMode(KeyCode.W, ModeType.Window);
             builder.BindMode(KeyCode.C, ModeType.Camera);
             builder.BindMode(KeyCode.F, ModeType.Farm);
+            builder.BindMode(KeyCode.M, ModeType.Maze);
             
             return builder.Build();
         }

@@ -1,6 +1,7 @@
 ﻿using MelonLoader;
 using trwm;
 using trwm.Source.Game;
+using trwm.Source.Game.Maze;
 using trwm.Source.Logging;
 using trwm.Source.Modes;
 using trwm.Source.UnlockTracking;
@@ -37,7 +38,8 @@ namespace trwm
             var windowManager = new WindowManager();
             var workspaceController = new WorkspaceController();
             var farmController = new FarmController();
-            var gameGateway = new GameGateway(droneController, windowManager, workspaceController, farmController);
+            var mazeManager = new MazeManager();
+            var gameGateway = new GameGateway(droneController, windowManager, workspaceController, farmController, mazeManager);
 
             _modeController = new ModeController(gameGateway);
             _timedRunUnlockTracker = new TimedRunUnlockTracker();

@@ -9,7 +9,8 @@ namespace trwm.Source.Modes
         DroneEntityPlacement,
         Window,
         Camera,
-        Farm
+        Farm,
+        Maze
     }
 
     public static class ModeTypeExtensions
@@ -24,6 +25,7 @@ namespace trwm.Source.Modes
                 ModeType.Window => "Window",
                 ModeType.Camera => "Camera",
                 ModeType.Farm => "Farm",
+                ModeType.Maze => "Maze",
                 _ => modeType.ToString()
             };
         }
