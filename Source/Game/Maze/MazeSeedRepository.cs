@@ -1,37 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using trwm.Source.Persistence;
 
 namespace trwm.Source.Game.Maze
 {
-    // todo: convert into proper file storage
     public class MazeSeedRepository
     {
-        private readonly List<StoredMazeSeed> _seeds;
-
-        public MazeSeedRepository()
-        {
-            _seeds = new List<StoredMazeSeed>();
-            Load();
-        }
-
         public IEnumerable<StoredMazeSeed> GetAll()
         {
-            return _seeds;
+            return ModDataStorage.SaveData.StoredMazeSeeds;
         }
 
         public void Add(StoredMazeSeed mazeSeed)
         {
-            _seeds.Add(mazeSeed);
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Load()
-        {
-            
+            ModDataStorage.SaveData.StoredMazeSeeds.Add(mazeSeed);
         }
     }
 }

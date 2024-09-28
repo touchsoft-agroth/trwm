@@ -1,5 +1,8 @@
-﻿namespace trwm.Source.Game.Maze
+﻿using System;
+
+namespace trwm.Source.Game.Maze
 {
+    [Serializable]
     public readonly struct StoredMazeSeed
     {
         public string Name { get; }

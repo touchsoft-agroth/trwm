@@ -6,6 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Reference Include="0Harmony">
+        <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\MelonLoader\net35\0Harmony.dll</HintPath>
+      </Reference>
       <Reference Include="Core">
         <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\TheFarmerWasReplaced_Data\Managed\Core.dll</HintPath>
       </Reference>
@@ -33,6 +36,10 @@
       <Reference Include="Utils">
         <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\The Farmer Was Replaced\TheFarmerWasReplaced_Data\Managed\Utils.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
 </Project>
