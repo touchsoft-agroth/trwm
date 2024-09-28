@@ -24,12 +24,13 @@ unclear why this is needed, but fixing is not the highest priority.
 
 ## Global Keys
 
-| Key | Action |
-|-----|--------|
-| D | Enter (D)rone mode |
-| W | Enter (W)indow mode |
-| C | Enter (C)amera mode |
-| F | Enter (F)arm mode |
+| Key | Action                                         |
+|-----|------------------------------------------------|
+| D | Enter (D)rone mode                             |
+| W | Enter (W)indow mode                            |
+| C | Enter (C)amera mode                            |
+| F | Enter (F)arm mode                              |
+| M | Enter (M)aze mode                              |
 | Q | Exit current mode (in all modes except Normal) |
 
 ## Mode-Specific Keys
@@ -84,3 +85,11 @@ unclear why this is needed, but fixing is not the highest priority.
 | E | (E)xpand farm |
 | S | (S)hrink farm |
 | C | (C)lear farm |
+
+### Maze Mode
+
+| Key | Action         |
+|-----|----------------|
+| R | (R)andom maze  |
+| S | (S)ave current |
+| L | (L)oad saved  |
