@@ -15,6 +15,10 @@ system for most game actions. Also contains additional debugging/development fea
 The mod uses the WASD keys for various functions. I recommend rebinding the camera movement keys
 to the arrow keys. You will not need those with this mod installed.
 
+## Important
+The drone may appear to move very slow in drone mode. This is only a visual issue,
+but can be resolved by running a proper script that moves the drone once. Still
+unclear why this is needed, but fixing is not the highest priority.
 
 # Keybinds
 
