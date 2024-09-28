@@ -41,6 +41,11 @@ namespace trwm.Source.Logging
             Output.Write(AppendSourceType(message));
         }
 
+        public void Warning(string message)
+        {
+            Output.Warn(AppendSourceType(message));
+        }
+
         private string AppendSourceType(string message)
         {
             var prefix = _source == null ? "[NULL] " : $"[{_source.GetType().Name}] ";

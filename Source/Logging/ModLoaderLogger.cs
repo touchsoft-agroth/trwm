@@ -15,5 +15,10 @@ namespace trwm.Source.Logging
         {
             _loggerInstance.Msg(message);
         }
+
+        public void Warn(string message)
+        {
+            _loggerInstance.Warning(message);
+        }
     }
 }
