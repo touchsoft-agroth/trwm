@@ -29,12 +29,15 @@ namespace trwm.Source.UI
         
         private TextEditor _textEditor;
         private string _title;
+
+        private bool _isFirstUpdate;
         
         private void Initialize(string title, List<string> searchableStrings, Action<string> callback)
         {
             _allSearchableStrings = searchableStrings;
             _onSelectionCallback = callback;
             _title = title;
+            _isFirstUpdate = true;
         }
         
         private void OnGUI()
@@ -49,11 +52,12 @@ namespace trwm.Source.UI
             GUI.SetNextControlName("SearchInput");
             string newInputText = GUILayout.TextArea(_inputText);
 
-            if (newInputText != _inputText)
+            if (newInputText != _inputText || _isFirstUpdate)
             {
                 _inputText = newInputText;
                 _currentAutocompleteOptions = GetAutocompleteOptions(_inputText);
                 _currentAutocompleteIndex = -1;
+                _isFirstUpdate = false;
             }
 
             if (Event.current.type == EventType.KeyDown)
@@ -109,6 +113,11 @@ namespace trwm.Source.UI
         private List<string> GetAutocompleteOptions(string input)
         {
             // todo: could be implemented with some fuzzy finding...
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return _allSearchableStrings;
+            }
             
             return _allSearchableStrings.FindAll(s => s.ToLower().Contains(input.ToLower()));
         }
